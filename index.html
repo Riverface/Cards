@@ -14,20 +14,32 @@
   <div class="container">
 
     <div class="container handtainer" >
-<input type="button" name="deal" value="deal" onclick="deal()" id="deal1"></input>
-<input type="button" name="deal" value="hit" onclick="hit()" id="hit1"></input>
-<div id="hand1">
 
+<input type="button" name="deal" value="hit" onclick="hit(hand1); bustcheck();" id="hit1"></input>
+<input type="button" name="deal" value="stay" onclick="stay(hand1); bustcheck();" id="stay1"></input>
+<div id="hand1output">
+
+</div>
+<div id="hand1val">
 </div>
 </div>
 
 <div class="container handtainer" >
-  <input type="button" name="deal" value="deal" onclick="deal()" id="deal1"></input>
+
+<input type="button" name="deal" value="hit" onclick="hit(hand2); bustcheck();" id="hit2"></input>
+<input type="button" name="deal" value="stay" onclick="stay(hand2); bustcheck();" id="stay2"></input>
+
 <div id="hand2">
-doop
-</div>
+<div id="hand2output">
 
 </div>
+<div id="hand2val">
+</div>
+</div>
+</div>
+
+<div  class="handtainer" id="result">
+  <input type="button" name="deal" value="deal" onclick="deal()" id="deal"></input>
 </div>
 </body>
 </html>
