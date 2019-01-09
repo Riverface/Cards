@@ -39,6 +39,7 @@ var cardcounter = 2;
 
 function assemble()
 {
+
   cards.numbers.forEach(function(x){
 
     cards.suits.forEach(function(y){
@@ -172,19 +173,25 @@ function result()
   bustcheck();
   acecheck(hand1);
   acecheck(hand2);
-
+  dealbutton.hide();
 
   if(hand1.total > hand2.total)
   {
-        $("#result").append("Player one wins! Restart to try again. <br> ");
+        $("#result").append("Player one wins! Restart to try again. <br> <input type='button' name='restart' value='restart' onclick='restart()' id='restart'></input> ");
+
+
   }
   if(hand2.total > hand1.total)
   {
-        $("#result").append("Player two wins! Restart to try again. <br> ");
+    $("#result").append("Player two wins! Restart to try again. <br>   <input type='button' name='restart' value='restart' onclick='restart()' id='restart'></input> ");
+
+
   }
   if(hand2.total == hand1.total)
   {
-            $("#result").append("A draw! <br> ");
+            $("#result").append("A draw! <br> <input type='button' name='restart' value='restart' onclick='restart()' id='restart'></input> ");
+
+
   }
 }
 function rescheck()
@@ -201,21 +208,15 @@ function bustcheck()
 
   if(hand2.total > 21)
   {
-    $("#result").append("Player two busts! Reset to try again. <br>");
-    hand1.hitbutton.hide();
-    hand1.staybutton.hide();
-    hand2.hitbutton.hide();
-    hand2.staybutton.hide();
+    $("#result").html("Player two busts! Reset to try again. <br> <input type='button' name='restart' value='restart' onclick='restart()' id='restart'></input>");
+
 
   }
   if(hand1.total > 21)
   {
 
-    $("#result").append("Player one busts! <br> ");
-    hand1.hitbutton.hide();
-    hand1.staybutton.hide();
-    hand2.hitbutton.hide();
-    hand2.staybutton.hide();
+    $("#result").html("Player one busts! <br> <input type='button' name='restart' value='restart' onclick='restart()' id='restart'></input> ");
+
   }
   hand1.totaldisplay.html("total: " + hand1.total);
   hand2.totaldisplay.html("total: " + hand2.total);
@@ -233,6 +234,44 @@ function totalcount()
   {
     hand2.total += z;
   });
+}
+function restart()
+{
+
+  hand1.staybutton = $("#stay1");
+  hand1.hitbutton = $("#hit1");
+  hand2.staybutton = $("#stay2");
+  hand2.hitbutton = $("#hit2");
+  hand1.output = $("#hand1output");
+  hand2.output = $("#hand2output");
+  hand1.totaldisplay = $("#hand1val");
+  hand2.totaldisplay = $("#hand2val");
+    hand1.hitbutton.hide();
+    hand1.staybutton.hide();
+    hand2.hitbutton.hide();
+    hand2.staybutton.hide();
+    hand1.total = 0;
+    hand2.total = 0;
+    dealbutton = $("#deal");
+
+  hand1.output.html("");
+  hand2.output.html("");
+  hand1.stay = false;
+  hand2.stay = false;
+  hand1.cards = [];
+  hand1.vals = [];
+  hand2.cards = [];
+  hand2.vals = [];
+  hand1.totaldisplay.html("total: " + hand1.total);
+  hand2.totaldisplay.html("total: " + hand2.total);
+
+  assemble();
+  shuffle();
+  $("#result").html('<input type="button" name="deal" value="deal" onclick="deal()" id="deal"></input>');
+  dealbutton = $("#deal");
+  dealbutton.show();
+
+
 }
 $(document).ready(function(){
 
